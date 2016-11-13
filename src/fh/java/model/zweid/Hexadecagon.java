@@ -15,7 +15,7 @@ public class Hexadecagon extends zweid {
         this.edge = edge;
     }
 
-    public double calcArea() {return 4 * Math.pow(edge,2)* (Math.tan)^-1;
+    public double calcArea() {return 4 * Math.pow(edge,2)* 1/Math.tan(Math.toRadians(22));
 
     }
 
@@ -24,11 +24,21 @@ public class Hexadecagon extends zweid {
 
     }
 
-    public double getEdge() {return edge};
+    @Override
+    public double calcVolumen() {
+        return 0;
+    }
+
+    @Override
+    public double calcSurface() {
+        return 0;
+    }
+
+    public double getEdge() {return edge;}
 
     public void setEdge(double edge) {
         this.edge = edge;
-    };
+    }
 
     @Override
     public String toString() {
@@ -38,5 +48,26 @@ public class Hexadecagon extends zweid {
         sb.append(", perimeter=").append(calcPerimeter());
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Hexadecagon that = (Hexadecagon) o;
+
+        return Double.compare(that.edge, edge) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(edge);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }
